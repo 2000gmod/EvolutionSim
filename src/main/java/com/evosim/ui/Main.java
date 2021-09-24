@@ -9,17 +9,21 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 
 
 public class Main extends Application {
 
     public static Canvas gameView;
+    private static GameViewController gviewc;
 
     public static void entry(String[] args) {
+
+        gameView = new Canvas();
+        gviewc = new GameViewController(gameView.getGraphicsContext2D());
+        gviewc.start();
+
         launch(args);
     }
 
@@ -69,17 +73,14 @@ public class Main extends Application {
         tab.setContent(vBox);
         vBox.setPadding(new Insets(10, 15, 10, 15));
 
-        Label titleLabel = new Label("Genetic Optimization Software");
+        Label titleLabel = new Label("Evolution Simulator");
         titleLabel.setFont(new Font(40));
 
         SplitPane splitPane = new SplitPane();
 
-        gameView = new Canvas();
         gameView.setWidth(500);
         gameView.setHeight(500);
 
-        gameView.getGraphicsContext2D().setFill(Color.RED);
-        gameView.getGraphicsContext2D().fillRect(20, 20, 20, 20);
 
         VBox vBox1 = new VBox(gameView);
 
